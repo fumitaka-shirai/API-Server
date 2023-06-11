@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Drug List</title>
+</head>
+<body>
+    <h1>Drug List</h1>
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Name</th>
+            <th>Dose</th>
+            <th>Taste</th>
+        </tr>
+        {% for drug in drugs %}
+        <tr>
+            <td>{{ drug.category }}</td>
+            <td>{{ drug.name }}</td>
+            <td>{{ drug.dose }}</td>
+            <td>{{ drug.taste }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
