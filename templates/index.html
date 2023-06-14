@@ -1,26 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Drug List</title>
+    <title>Drug Data</title>
 </head>
 <body>
-    <h1>Drug List</h1>
+    <h1>Drug Data</h1>
     <table>
-        <tr>
-            <th>Category</th>
-            <th>Name</th>
-            <th>Dose</th>
-            <th>Taste</th>
-        </tr>
-        {% for drug in drugs %}
-        <tr>
-            <td>{{ drug.category }}</td>
-            <td>{{ drug.name }}</td>
-            <td>{{ drug.dose }}</td>
-            <td>{{ drug.taste }}</td>
-        </tr>
-        {% endfor %}
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Category</th>
+                <th>Name</th>
+                <th>Dose</th>
+                <th>Taste</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in rows %}
+            <tr>
+                <td>{{ row.id }}</td>
+                <td>{{ row.category }}</td>
+                <td>{{ row.name }}</td>
+                <td>{{ row.dose }}</td>
+                <td>{{ row.taste }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
     </table>
 </body>
 </html>
