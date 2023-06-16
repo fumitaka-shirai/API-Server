@@ -4,10 +4,15 @@ import sqlite3
 
 app = Flask(__name__)
 CORS(app)
-
+def dict_factory(cursor, row):
+    d = {}
+    for idx, col in enumerate(cursor.description):
+        d[col[0]] = row[idx]
+    return d 
 @app.route('/api/drug', methods=['GET'])
 def get_drug():
     conn = sqlite3.connect('drug.db')
+    conn.row_factory = dict_factory
     cursor = conn.cursor()
     cursor.execute('SELECT * FROM drug')
     drug = cursor.fetchall()
@@ -16,10 +21,10 @@ def get_drug():
     drug_list = []
     for row in drug:
         drug_dict = {
-            "Category": row[1],
-            "Name": row[2],
-            "Dose": row[3],
-            "Taste": row[4]
+            "Category": row['category'],
+            "Name": row['name'],
+            "Dose": row['dose'],
+            "Taste": row['taste']
         }
         drug_list.append(drug_dict)
 
