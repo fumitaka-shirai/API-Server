@@ -10,10 +10,10 @@ sqlite3ターミナル内で「.open drug.db」を実行することでdrug.db�
 -- SQLite
 CREATE TABLE drug(
  id INTEGER PRIMARY KEY AUTOINCREMENT,
- category:TEXT,
- name:TEXT,
- dose:TEXT,
- taste:TEXT
+ category TEXT,
+ name TEXT,
+ dose TEXT,
+ taste TEXT
 );
 // SQLite.sql内でRun Queryを実行、SQLITE　EXPLORERを更新するとテーブルが作成される。
 
