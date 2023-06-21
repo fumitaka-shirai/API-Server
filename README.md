@@ -15,7 +15,8 @@ CREATE TABLE drug(
  dose TEXT,
  taste TEXT
 );
-// SQLite.sql内でRun Queryを実行、SQLITE　EXPLORERを更新するとテーブルが作成される。
+// SQLITE EXPLORERでNew　Queryを選択。
+SQLite.sql内でRun Queryを実行、SQLITE　EXPLORERを更新するとテーブルが作成される。
 
 /テーブル内にデータの挿入/
 
