@@ -1,12 +1,18 @@
 # API-server
 
-/データベース作成方法/
+### データベース作成方法
 
-sqlite3ターミナル内で「.open drug.db」を実行することでdrug.dbが作成される。
+sqlite3ターミナル内で以下のコードを実行することでdrug.dbが作成される。
+```
+.open drug.db
+```
 
 
-/データベースのテーブル作成/
+### データベースのテーブル作成
 
+SQLITE EXPLORERでNew　Queryを選択。
+SQLite.sql内で以下のSQL文を入力し、Run Queryを実行。
+```
 -- SQLite
 CREATE TABLE drug(
  id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -15,19 +21,13 @@ CREATE TABLE drug(
  dose TEXT,
  taste TEXT
 );
-// SQLITE EXPLORERでNew　Queryを選択。
-SQLite.sql内でRun Queryを実行、SQLITE　EXPLORERを更新するとテーブルが作成される。
+```
+SQLITE　EXPLORERを更新するとこれにより`drug`という名前のテーブルが作成される。
 
-/テーブル内にデータの挿入/
+### テーブルへのデータの挿入
 
-<!-- -- SQLite
-CREATE TABLE drug(
- id INTEGER PRIMARY KEY AUTOINCREMENT,
- category:TEXT,
- name:TEXT,
- dose:TEXT,
- taste:TEXT
-); -->
+SQLite.sql内で以下のSQL文を入力し、Run Queryを実行。
+```
 INSERT INTO drug (category, name,dose,taste)
 VALUES('去痰薬','ムコダインDS50%','体重あたり1回10㎎/㎏　1日3回まで',	'ピーチ'),
       ('去痰薬','ムコソルバンDS1.5%','体重あたり1日0.06g/㎏　1日3回まで','ヨーグルト'),
@@ -39,10 +39,12 @@ VALUES('去痰薬','ムコダインDS50%','体重あたり1回10㎎/㎏　1日3�
       ('抗アレルギー薬','オノンドライシロップ10%','体重あたり7㎎/㎏　1日2回まで','ヨーグルト'),
       ('鎮痛薬','カロナール細粒20%','体重あたり10~15㎎/㎏　1日60㎎/㎏まで','オレンジ'),
       ('鎮痛薬','ポンタール散50%','体重あたり6.5㎎/㎏　1日2回まで','なし')
+```
+SQLITE　EXPLORERを更新するとこれにより`drug`という名前のテーブル内にデータが挿入される。
 
-//テーブル作成時、記載した内容を選択し、Ctrl + /で指定範囲にコメントアウトを実行。INSERT文を記載し、Run Queryを実行してテーブル内にデータを挿入する。   
+### APIサーバーの実行方法
+ターミナル内で以下のコードを実行し、APIサーバーを立ち上げる。
+```
+python app.py
 
-/APIサーバーの実行方法/
-ターミナル内で「python app.py」を実行し、APIサーバーを立ち上げる。
-     
- 
+```
