@@ -19,6 +19,8 @@ def process_common_info(soup):
     for p in p_tags:
         text = p.get_text()
         if "通常、" in text:
+            if url == 'https://www.kegg.jp/medicus-bin/japic_med?japic_code=00050617':
+                continue
             print(text)
             dose = text
 
@@ -33,13 +35,15 @@ def process_common_info(soup):
 
     for td in td_tags:
         text = td.get_text()
-        if "気道" in text:
+        if "気道" in text or "鎮咳" in text:
             print(text)
             category = text
 
     for div in contents_block_div:
         text = div.get_text()
-        if "通常、" in text:
+        if "通常、" in text :
+            if url == 'https://www.kegg.jp/medicus-bin/japic_med?japic_code=00050617':
+                continue
             print(text)
             dose = text
 
@@ -50,6 +54,7 @@ urls = [
     'https://www.kegg.jp/medicus-bin/japic_med?japic_code=00067912',
     'https://www.kegg.jp/medicus-bin/japic_med?japic_code=00055886',
     'https://www.kegg.jp/medicus-bin/japic_med?japic_code=00056315',
+    'https://www.kegg.jp/medicus-bin/japic_med?japic_code=00050617',
     'https://www.kegg.jp/medicus-bin/japic_med?japic_code=00057119',
     'https://www.kegg.jp/medicus-bin/japic_med?japic_code=00053562',
     'https://www.kegg.jp/medicus-bin/japic_med?japic_code=00051194',
@@ -67,7 +72,6 @@ for url in urls:
 
     category, dose = process_common_info(soup)
 
-
     if url == 'https://www.kegg.jp/medicus-bin/japic_med?japic_code=00056315':
         td_tags = soup.find_all('td')
         for td in td_tags:
@@ -75,6 +79,32 @@ for url in urls:
             if "経口用" in text:
                 print(text)
                 category = text
+
+    if url == 'https://www.kegg.jp/medicus-bin/japic_med?japic_code=00055886':
+        td_tags = soup.find_all('td')
+        for td in td_tags:
+            text = td.get_text()
+            if "経口用" in text:
+                print(text)
+                category = text
+
+    if url == 'https://www.kegg.jp/medicus-bin/japic_med?japic_code=00057119':
+        td_tags = soup.find_all('td')
+        for td in td_tags:
+            text = td.get_text()
+            if "鎮咳" in text:
+                print(text)
+                category = text
+
+    if url == 'https://www.kegg.jp/medicus-bin/japic_med?japic_code=00050617':
+       div_tags = soup.find_all('div', class_='contents-block')
+
+       for div in div_tags:
+        text = div.get_text()
+        if "チペピジンクエン酸塩として" in text:
+            print(text)
+            dose = text
+
 
     if url == 'https://www.kegg.jp/medicus-bin/japic_med?japic_code=00053562':
         td_tags = soup.find_all('td')
@@ -117,5 +147,4 @@ for url in urls:
               (name, category, dose))
     conn.commit()
 
-# データベース接続をクローズ
 conn.close()
