@@ -64,3 +64,12 @@ CREATE TABLE chat (
 ```
 
 SQLITE　EXPLORERを更新するとこれにより`chat`という名前のテーブルが作成される。
+
+###　該当なしの医薬品削除
+
+```
+DELETE FROM drugs WHERE name = 'No Title Available';
+
+```
+
+スクレイピングにより、医薬品の該当がないもに関してこのコードで削除を行う。
