@@ -48,3 +48,19 @@ SQLITE　EXPLORERを更新するとこれにより`drug`という名前のテー
 python app.py
 
 ```
+
+###　chatのデーターベース作成
+
+```
+CREATE TABLE chat (
+    id INTEGER PRIMARY KEY,
+    text TEXT,
+    date TEXT,
+    username TEXT,
+    drug_id INTEGER,
+    FOREIGN KEY (drug_id) REFERENCES drug(id)
+);
+
+```
+
+SQLITE　EXPLORERを更新するとこれにより`chat`という名前のテーブルが作成される。
