@@ -21,13 +21,16 @@ def get_drug():
     conn.row_factory = dict_factory
     cursor = conn.cursor()
     cursor.execute('SELECT * FROM drugs')
+
     drug = cursor.fetchall()
     conn.close()
-    
 
+    
     drug_list = []
-    for row in drug:
+    for idx, row in enumerate(drug):
+        drug_id = idx + 1  
         drug_dict = {
+            "id": drug_id,
             "Category": row['category'],
             "Name": row['name'],
             "Dose": row['dose'],
@@ -36,13 +39,12 @@ def get_drug():
 
     return jsonify(drug_list)
 
-
 @app.route('/api/chat', methods=['GET'])
 def get_chat():
     conn = connect_db()
     conn.row_factory = dict_factory
     cursor = conn.cursor()
-    cursor.execute('SELECT * FROM message')
+    cursor.execute('SELECT * FROM chat')
     messages = cursor.fetchall()
     conn.close()
 
@@ -56,8 +58,9 @@ def add_chat():
     text = data.get('text')
     date = data.get('date')
     username = data.get('username')
+    drug_id = data.get('drug_id')  
 
-    cursor.execute("INSERT INTO message (text, date, username) VALUES (?, ?, ?)", (text, date, username))
+    cursor.execute("INSERT INTO chat (text, date, username, drug_id) VALUES (?, ?, ?, ?)", (text, date, username, drug_id))
     conn.commit()
     message_id = cursor.lastrowid
 
@@ -67,7 +70,8 @@ def add_chat():
         'id': message_id,
         'text': text,
         'date': date,
-        'username': username
+        'username': username,
+        'drug_id': drug_id  
     }
     return jsonify(message)
 
