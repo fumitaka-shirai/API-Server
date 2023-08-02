@@ -40,16 +40,17 @@ VALUES('去痰薬','ムコダインDS50%','体重あたり1回10㎎/㎏　1日3�
       ('鎮痛薬','カロナール細粒20%','体重あたり10~15㎎/㎏　1日60㎎/㎏まで','オレンジ'),
       ('鎮痛薬','ポンタール散50%','体重あたり6.5㎎/㎏　1日2回まで','なし')
 ```
-SQLITE　EXPLORERを更新するとこれにより`drug`という名前のテーブル内にデータが挿入される。
+`drug`という名前のテーブル内にデータが挿入される。
 
 ### APIサーバーの実行方法
+
 ターミナル内で以下のコードを実行し、APIサーバーを立ち上げる。
 ```
 python app.py
 
 ```
 
-###　chatのデーターベース作成
+### chatのデーターベース作成
 
 ```
 CREATE TABLE chat (
@@ -63,7 +64,21 @@ CREATE TABLE chat (
 
 ```
 
-SQLITE　EXPLORERを更新するとこれにより`chat`という名前のテーブルが作成される。
+`chat`という名前のテーブルが作成される。
+
+### detailesのテーブル作成
+
+CREATE TABLE detiles (
+    id INTEGER PRIMARY KEY,
+     name  TEXT,
+     indication TEXT,
+     interations TEXT,
+     sideeffects TEXT,
+     pharmacology TEXT,
+     drug_id INTEGER
+);
+
+`detailes`という名前のテーブルが作成される。
 
 ###　該当なしの医薬品削除
 
@@ -73,3 +88,12 @@ DELETE FROM drugs WHERE name = 'No Title Available';
 ```
 
 スクレイピングにより、医薬品の該当がないもに関してこのコードで削除を行う。
+
+### スクレイピングの方法
+
+```
+python app.py
+
+```
+以上のコードにより実行する。
+
